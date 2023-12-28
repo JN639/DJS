@@ -35,7 +35,7 @@ module.exports = {
             });
 
         } catch (e) {
-            console.log(`[PING] Error while executing command: ${e}`.red);
+            console.log(`[SAY] Error while executing command: ${e}`.red);
         }
     }
 }

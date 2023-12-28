@@ -34,7 +34,7 @@ module.exports = {
                 ]
             });
         } catch (e) {
-            console.log(`[PING] Error while executing command: ${e}`.red);
+            console.log(`[EMBED] Error while executing command: ${e}`.red);
         }
     }
 }
