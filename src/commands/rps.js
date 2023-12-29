@@ -7,26 +7,25 @@ module.exports = {
     requiredRoles: [],
     allowedUserIds: [],
     options: [
-        {"String": { name: 'choice', description: 'Your choice (rock, paper, scissors)', required: true } },
-        // {"User": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"Integer": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"Channel": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"Role": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"StringChoices": { name: 'title', description: 'What do you need to input', required: true, choices: [['whatUserSees', 'value'], ['whatUserSees2', 'value2']] } },
-        // {"IntegerChoices": { name: 'title', description: 'What do you need to input', required: true, choices: [['whatUserSees', 123], ['whatUserSees2', 456]] } },
+        {
+            "StringChoices": {
+            name: 'rps',
+                description: 'Your choice',
+                required: true,
+                choices: [
+                    {name: 'Rock', value: 'rock'},
+                    {name: 'Paper', value: 'paper'},
+                    {name: 'Scissors', value: 'scissors'}
+                ]
+            }
+        },
     ],
     run: async (client, interaction) => {
         try {
             const { options } = interaction;
-            let choice = options.getString('choice');
+            let choice = options.getString('rps');
 
-            if (choice.toLowerCase() === 'r') {
-                choice = 'Rock';
-            } else if (choice.toLowerCase() === 'p') {
-                choice = 'Paper';
-            } else if (choice.toLowerCase() === 's') {
-                choice = 'Scissors';
-            }
+            choice = choice.charAt(0).toUpperCase() + choice.slice(1);
 
             const myChoice = ['Rock', 'Paper', 'Scissors'][Math.floor(Math.random() * 3)];
             let outcome = 'tied';

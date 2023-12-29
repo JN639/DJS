@@ -59,7 +59,7 @@ module.exports = (client) => {
                                     .setName(option.StringChoices.name)
                                     .setDescription(option.StringChoices.description)
                                     .setRequired(option.StringChoices.required)
-                                    .addChoices(option.StringChoices.choices.map(c => [String(c[0]).toLowerCase(), String(c[1])]));
+                                    .addChoices(...option.StringChoices.choices);
                             });
                         } else if (option.IntegerChoices && option.IntegerChoices.name && option.IntegerChoices.description && option.IntegerChoices.choices && option.IntegerChoices.choices.length > 0) {
                             command.addIntegerOption(op => {
@@ -67,7 +67,7 @@ module.exports = (client) => {
                                     .setName(option.IntegerChoices.name)
                                     .setDescription(option.IntegerChoices.description)
                                     .setRequired(option.IntegerChoices.required)
-                                    .addChoices(option.IntegerChoices.choices.map(c => [String(c[0]).toLowerCase(), parseInt(c[1])]));
+                                    .addChoices(option.IntegerChoices.choices.map(c => [String(c[0]), parseInt(c[1])]));
                             });
                         } else {
                             console.log(`[COMMAND HANDLER] An option is not configured right from the command: ${pull.name}`.red);

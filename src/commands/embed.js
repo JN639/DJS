@@ -9,12 +9,6 @@ module.exports = {
     options: [
         {"String": { name: 'title', description: 'The title of the embed', required: true } },
         {"String": { name: 'description', description: 'The description of the embed', required: true } },
-        // {"User": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"Integer": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"Channel": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"Role": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"StringChoices": { name: 'title', description: 'What do you need to input', required: true, choices: [['whatUserSees', 'value'], ['whatUserSees2', 'value2']] } },
-        // {"IntegerChoices": { name: 'title', description: 'What do you need to input', required: true, choices: [['whatUserSees', 123], ['whatUserSees2', 456]] } },
     ],
     run: async (client, interaction) => {
         try {

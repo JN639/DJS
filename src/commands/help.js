@@ -8,13 +8,7 @@ module.exports = {
     requiredRoles: [],
     allowedUserIds: [],
     options: [
-        {"String": { name: 'command', description: 'The Command you want help for', required: false } },
-        // {"User": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"Integer": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"Channel": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"Role": { name: 'title', description: 'What do you need to input', required: true } },
-        // {"StringChoices": { name: 'title', description: 'What do you need to input', required: true, choices: [['whatUserSees', 'value'], ['whatUserSees2', 'value2']] } },
-        // {"IntegerChoices": { name: 'title', description: 'What do you need to input', required: true, choices: [['whatUserSees', 123], ['whatUserSees2', 456]] } },
+        {"String": { name: 'command', description: 'The command you want help for', required: false } },
     ],
     run: async (client, interaction) => {
         try {
@@ -42,6 +36,20 @@ module.exports = {
                     return;
                 }
 
+                let usage = `/${command.name}`
+
+                if (command.options && command.options.length > 0) {
+                    for (const option of command.options) {
+                        const data = option[Object.keys(option)[0]];
+
+                        if (data.required) {
+                            usage += ` [${data.name}]`
+                        } else {
+                            usage += ` {${data.name}]`
+                        }
+                    }
+                }
+
                 await interaction.reply({ephemeral: true, embeds: [
                         new EmbedBuilder()
                             .setColor(0x3498db)
@@ -52,7 +60,8 @@ module.exports = {
                             .setTitle('DJS Help')
                             .addFields(
                                 { name: 'Name', value: command.name },
-                                { name: 'Description', value: command.description }
+                                { name: 'Description', value: command.description },
+                                { name: 'Usage', value: usage}
                             )
                     ]
                 });
