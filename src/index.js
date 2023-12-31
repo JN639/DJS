@@ -1,5 +1,6 @@
 const discord = require('discord.js');
-require('dotenv').config();
+const mongoose = require('mongoose');
+require('dotenv/config');
 
 const client = new discord.Client({
     intents: [
@@ -27,4 +28,9 @@ client.commands = new discord.Collection();
 require('./handlers/commandHandler.js')(client);
 require('./handlers/eventHandler.js')(client);
 
-client.login(process.env.TOKEN);
+(async () => {
+    await mongoose.connect(process.env.MONGO);
+    console.log('Connected to the database.');
+
+    await client.login(process.env.TOKEN);
+})();

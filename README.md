@@ -8,6 +8,7 @@ DJS is an open-source discord bot with many commands.
 4. Run the command npm install
 5. Create a '.env' file in the DJS directory
 6. Insert your bot token in the '.env' file like this: TOKEN=BOT_TOKEN
+7. Insert your MongoDB URI in the '.env' file like this: MONGO=MONGO_URI
 7. Run the index.js file
 
 ## Disclaimer
